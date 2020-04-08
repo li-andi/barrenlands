@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class BarrenLandTests {
-
+	/**
+	 * Test input 1 from example
+	 */
 	@Test
 	public void testGetFertileLandArea1() {
 		BarrenLand bl = new BarrenLand();
@@ -15,7 +17,9 @@ class BarrenLandTests {
 		assertEquals(expectedResult1, bl.getFertileLandArea(input1));
 
 	}
-
+	/**
+	 * Test input 2 from example
+	 */
 	@Test
 	public void testGetFertileLandArea2() {
 		BarrenLand bl = new BarrenLand();
@@ -24,6 +28,9 @@ class BarrenLandTests {
 		assertEquals(expectedResult2, bl.getFertileLandArea(input2));
 	}
 	
+	/**
+	 * Test what happens if the coordinate is out of bounds
+	 */
 	@Test
 	public void testGetFertileLandArea3() {
 		BarrenLand bl = new BarrenLand();	
@@ -31,7 +38,9 @@ class BarrenLandTests {
 		String[] input3 = {"0 292 400 307"};
 		assertEquals(expectedResult3, bl.getFertileLandArea(input3));
 	}
-	
+	/**
+	 * Test what happens if the land is all barren
+	 */
 	@Test
 	public void testGetFertileLandArea4() {
 		BarrenLand bl = new BarrenLand();	
@@ -39,7 +48,9 @@ class BarrenLandTests {
 		String[] input4 = {"0 0 399 599"};
 		assertEquals(expectedResult4, bl.getFertileLandArea(input4));
 	}
-	
+	/**
+	 * Test what happens if there are non numerical numbers in input
+	 */
 	@Test
 	public void testGetFertileLandArea5() {
 		BarrenLand bl = new BarrenLand();	
@@ -47,7 +58,9 @@ class BarrenLandTests {
 		String[] input5 = {"a0 0 3d99 599"};
 		assertEquals(expectedResult5, bl.getFertileLandArea(input5));
 	}	
-	
+	/**
+	 * Test if input has too many numbers
+	 */
 	@Test
 	public void testGetFertileLandArea6() {
 		BarrenLand bl = new BarrenLand();	
