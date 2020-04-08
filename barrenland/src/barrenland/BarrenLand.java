@@ -29,13 +29,14 @@ public class BarrenLand {
 	public void readInput() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		while (true) {
+		while (validInput) {
 			sb.append(br.readLine());
 			if (sb.toString().matches("[0-9\",}{“” ]+")) {
 				break;
-			} else {				
+			} else {
+				validInput = false;
 				System.out.println("Not valid input");
-				break;
+				
 			}
 		}
 
@@ -182,12 +183,5 @@ public class BarrenLand {
 		return area;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public int[][] getLand() {
-		return land;
-	}
 
 }
