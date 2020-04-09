@@ -35,16 +35,15 @@ public class BarrenLand {
 				break;
 			} else {
 				validInput = false;
-				System.out.println("Not valid input");
 				
 			}
 		}
 
 		String[] subStrings = sb.toString().split(",");
-
+		
 		for (String s : subStrings) {
 			s = s.replaceAll("[^.0-9\\s]", ""); // remove all non numbers
-			s = s.replaceAll("^ ", "");     // remove leading space
+			s = s.replaceAll("^ ", "");     // remove leading space		
 			parseString(s);
 		}
 
@@ -69,11 +68,16 @@ public class BarrenLand {
 						result.add(area);// add the area to list
 					}
 				}
-			}
+			}			
 			Collections.sort(result);// sort the list from least to greatest
-		}		
-
-		// return empty list if input not valid
+		}
+		else {
+			System.out.println("Input was not valid");
+			result.add(ROW*COLUMN);
+		}
+		
+		if(result.isEmpty()) result.add(0);
+		// return the area of the land
 		System.out.println(result); // print result to std out
 		return result;
 
@@ -103,26 +107,27 @@ public class BarrenLand {
 	 */
 	private void parseString(String listOfCoordinates) {
 		String[] points = listOfCoordinates.split(" ");
-		if (points.length > 4 || points.length < 4) {// checks if the format of the string is correct
-			validInput = false;
-			System.out.println("Invalid Input");
-		}
-		int x1 = Integer.valueOf(points[0]);// changes string to int
-		int y1 = Integer.valueOf(points[1]);
-		int x2 = Integer.valueOf(points[2]);
-		int y2 = Integer.valueOf(points[3]);
-		if (checkBoundries(x1, y1, x2, y2)) {
-			fillLand(x1, y1, x2, y2);
+		if (points.length == 4 ) {// checks if the format of the string is correct
+			int x1 = Integer.valueOf(points[0]);// changes string to int
+			int y1 = Integer.valueOf(points[1]);
+			int x2 = Integer.valueOf(points[2]);
+			int y2 = Integer.valueOf(points[3]);
+			if (checkBoundries(x1, y1, x2, y2)) {
+				fillLand(x1, y1, x2, y2);
 
-		} else {
-			validInput = false;
-			System.out.println("Points out of bounds");
+			} else {
+				validInput = false;				
 
+			}
 		}
+		else {
+			validInput = false;
+		}
+		
 	}
 
 	/**
-	 * This functions makes sure that the coordinates are within bounds
+	 * This functions makes sure that the coordinates are within the bounds of the area
 	 * 
 	 * @param x1
 	 * @param y1
@@ -141,6 +146,9 @@ public class BarrenLand {
 			return false;
 		}
 		if (x2 < 0 || x2 > COLUMN - 1) {
+			return false;
+		}
+		if(y1>y2 || x1>x2) { //check if the top right corner of the rectangle is actually in the top right corner
 			return false;
 		}
 
