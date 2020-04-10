@@ -29,13 +29,13 @@ public class BarrenLand {
 	public void readInput() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
+		//continue reading from stdin as long as the input is valid
 		while (validInput) {
 			sb.append(br.readLine());
-			if (sb.toString().matches("[0-9\",}{“” ]+")) {
+			if (sb.toString().matches("[0-9\",}{“” ]+")) { //checks if input matches the required format  
 				break;
 			} else {
-				validInput = false;
-				
+				validInput = false;				
 			}
 		}
 
@@ -166,9 +166,9 @@ public class BarrenLand {
 	 * @return
 	 */
 	private int bfs(int[][] land, int x, int y) {
-		int area = 1;// start the area count
+		int area = 1;
 
-		int[][] dirs = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } }; // check neighbors
+		int[][] dirs = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } }; //coordinates of north east south west
 		Queue<int[]> queue = new LinkedList<>();
 		queue.offer(new int[] { x, y });
 		land[x][y] = BARREN_LAND; // mark first tile as visited
